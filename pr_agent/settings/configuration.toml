@@ -6,7 +6,6 @@
 
 [config]
 # models
-python3 -m venv venv
 model="gemini/gemini-1.5-flash"
 fallback_models=["gemini/gemini-1.5-flash"]
 #model_reasoning="o4-mini" # dedictated reasoning model for self-reflection
