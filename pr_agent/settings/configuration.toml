@@ -8,6 +8,9 @@
 # models
 model="gemini/gemini-1.5-flash"
 fallback_models=["gemini/gemini-1.5-flash"]
+"""
+Gemini API 키를 지정합니다. 환경 변수 GEMINI_API_KEY에서 값을 가져옵니다.
+"""
 gemini_api_key = "${GEMINI_API_KEY}"
 #model_reasoning="o4-mini" # dedictated reasoning model for self-reflection
 #model_weak="gpt-4o" # optional, a weaker model to use for some easier tasks
