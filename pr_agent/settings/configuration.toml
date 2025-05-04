@@ -30,6 +30,9 @@ disable_auto_feedback = false
 ai_timeout=120 # 2minutes
 skip_keys = []
 custom_reasoning_model = false # when true, disables system messages and temperature controls for models that don't support chat-style inputs
+"""
+PR 응답에 사용할 언어 로케일 코드입니다. ISO 3166 및 ISO 639 형식을 사용합니다 (예: "ko-KR", "en-US", "it-IT", "zh-CN"). 한국어(ko-KR)로 설정되어 있습니다.
+"""
 response_language="ko-KR" # Language locales code for PR responses in ISO 3166 and ISO 639 format (e.g., "en-US", "it-IT", "zh-CN", ...)
 # token limits
 max_description_tokens = 500
