@@ -6,8 +6,12 @@
 
 [config]
 # models
-model="o4-mini"
-fallback_models=["gpt-4.1"]
+model="gemini/gemini-1.5-flash"
+fallback_models=["gemini/gemini-1.5-flash"]
+"""
+Gemini API 키를 지정합니다. 환경 변수 GEMINI_API_KEY에서 값을 가져옵니다.
+"""
+gemini_api_key = "${GEMINI_API_KEY}"
 #model_reasoning="o4-mini" # dedictated reasoning model for self-reflection
 #model_weak="gpt-4o" # optional, a weaker model to use for some easier tasks
 # CLI
@@ -26,7 +30,10 @@ disable_auto_feedback = false
 ai_timeout=120 # 2minutes
 skip_keys = []
 custom_reasoning_model = false # when true, disables system messages and temperature controls for models that don't support chat-style inputs
-response_language="en-US" # Language locales code for PR responses in ISO 3166 and ISO 639 format (e.g., "en-US", "it-IT", "zh-CN", ...)
+"""
+PR 응답에 사용할 언어 로케일 코드입니다. ISO 3166 및 ISO 639 형식을 사용합니다 (예: "ko-KR", "en-US", "it-IT", "zh-CN"). 한국어(ko-KR)로 설정되어 있습니다.
+"""
+response_language="ko-KR" # Language locales code for PR responses in ISO 3166 and ISO 639 format (e.g., "en-US", "it-IT", "zh-CN", ...)
 # token limits
 max_description_tokens = 500
 max_commits_tokens = 500
