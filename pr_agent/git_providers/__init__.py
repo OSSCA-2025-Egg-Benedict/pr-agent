@@ -27,6 +27,7 @@ _GIT_PROVIDERS = {
 def get_git_provider():
     try:
         provider_id = get_settings().config.git_provider
+        print("provider_id --> ", provider_id)
     except AttributeError as e:
         raise ValueError("git_provider is a required attribute in the configuration file") from e
     if provider_id not in _GIT_PROVIDERS:
@@ -50,10 +51,13 @@ def get_git_provider_with_context(pr_url) -> GitProvider:
         git_provider = context["git_provider"]["pr_url"]
         # possibly check if the git_provider is still valid, or if some reset is needed
         # ...
+        print("git_provider", git_provider)
         return git_provider
     else:
         try:
             provider_id = get_settings().config.git_provider
+            if provider_id == 'local':
+                git_provider = LocalGitProvider(pr_url)
             if provider_id not in _GIT_PROVIDERS:
                 raise ValueError(f"Unknown git provider: {provider_id}")
             git_provider = _GIT_PROVIDERS[provider_id](pr_url)

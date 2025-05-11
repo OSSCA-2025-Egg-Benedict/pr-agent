@@ -2,16 +2,16 @@ import copy
 import difflib
 import hashlib
 import itertools
+import json
 import re
 import time
 import traceback
-import json
 from datetime import datetime
 from typing import Optional, Tuple
 from urllib.parse import urlparse
 
-from github.Issue import Issue
 from github import AppAuthentication, Auth, Github, GithubException
+from github.Issue import Issue
 from retry import retry
 from starlette_context import context
 
@@ -83,6 +83,7 @@ class GithubProvider(GitProvider):
             self._get_incremental_commits()
 
     def is_supported(self, capability: str) -> bool:
+        print("ca->", capability)
         return True
 
     def _get_owner_and_repo_path(self, given_url: str) -> str:
