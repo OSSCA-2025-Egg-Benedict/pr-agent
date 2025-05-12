@@ -13,11 +13,15 @@ Extra instructions from the user:
 =====
 {{extra_instructions}}
 =====
+
 {% endif %}
 
 {%- if add_diagram %}
-Also, include a Mermaid sequence diagram showing key function calls and component interactions.
+
+Generate a Mermaid sequence diagram that shows key function calls and component interactions introduced in this PR.
+
 {%- endif %}
+
 
 The output must be a YAML object equivalent to type $PRDescription, according to the following Pydantic definitions:
 =====
