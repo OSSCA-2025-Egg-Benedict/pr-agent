@@ -95,7 +95,7 @@ class PRDescription:
             get_logger().info(f"Generating a PR description for pr_id: {self.pr_id}")
             relevant_configs = {'pr_description': dict(get_settings().pr_description),
                                 'config': dict(get_settings().config)}
-            get_logger().debug("Relevant configs", artifacts=relevant_configs)
+            get_logger().debug("Relevant configs", artifact=relevant_configs)
             if get_settings().config.publish_output and not get_settings().config.get('is_auto_command', False):
                 self.git_provider.publish_comment("Preparing PR description...", is_temporary=True)
 
@@ -507,10 +507,10 @@ class PRDescription:
         ai_type = self.data.get('type')
         if ai_type and not re.search(r'<!--\s*pr_agent:type\s*-->', body):
             if isinstance(ai_type, list):
-                pr_types = [f"{ai_header}{t}" for t in ai_type]
-                pr_type = ','.join(pr_types)
+                pr_type = ', '.join(str(t) for t in ai_type)
             else:
-                pr_type = f"{ai_header}{ai_type}"
+                pr_type = ai_type
+            pr_type = f"{ai_header}{pr_type}"
             body = body.replace('pr_agent:type', pr_type)
 
         ai_summary = self.data.get('description')
