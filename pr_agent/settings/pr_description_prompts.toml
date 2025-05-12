@@ -17,7 +17,7 @@ Extra instructions from the user:
 {% endif %}
 
 {%- if add_diagram %}
-The 'Description' part should also include a mermaid diagram.
+Generate a Mermaid sequence diagram that shows key function calls and component interactions introduced in this PR. Include the diagram inside the `description` section using the ```mermaid format.
 {%- endif %}
 
 
