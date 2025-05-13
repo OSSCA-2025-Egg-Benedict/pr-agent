@@ -101,6 +101,7 @@ enable_pr_type=true
 final_update_message = true
 enable_help_text=false
 enable_help_comment=true
+add_diagram=true
 # describe as comment
 publish_description_as_comment=false
 publish_description_as_comment_persistent=true

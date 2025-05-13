@@ -18,7 +18,7 @@ The tool can be triggered automatically every time a new PR is [opened](../usage
 ___
 
 !!! note "The following features are available only for Qodo Merge 💎 users:"
-    - The `Apply this suggestion` checkbox, which interactively converts a suggestion into a committable code comment
+    - The `Apply / Chat` checkbox, which interactively converts a suggestion into a committable code comment
     - The `More` checkbox to generate additional suggestions
 
 ## Example usage

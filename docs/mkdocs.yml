@@ -61,6 +61,8 @@ nav:
       - Options: 'chrome-extension/options.md'
   - FAQ:
       - FAQ: 'faq/index.md'
+  - Recent Updates:
+      - Recent Updates: 'recent_updates/index.md'
   - AI Docs Search: 'ai_search/index.md'
 #  - Code Fine-tuning Benchmark: 'finetuning_benchmark/index.md'
 
