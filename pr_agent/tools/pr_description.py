@@ -73,6 +73,7 @@ class PRDescription:
             "related_tickets": "",
             "include_file_summary_changes": len(self.git_provider.get_diff_files()) <= self.COLLAPSIBLE_FILE_LIST_THRESHOLD,
             'duplicate_prompt_examples': get_settings().config.get('duplicate_prompt_examples', False),
+            "add_diagram": get_settings().config.get('pr_description.add_diagram', True),
         }
 
         self.user_description = self.git_provider.get_user_description()
