@@ -15,6 +15,10 @@ Extra instructions from the user:
 =====
 {% endif %}
 
+{%- if add_diagram %}
+Generate a Mermaid sequence diagram of key function or component calls added or changed in this PR. Include it in the `description` section using ```mermaid format.
+{%- endif %}
+
 The output must be a YAML object equivalent to type $PRDescription, according to the following Pydantic definitions:
 =====
 class PRType(str, Enum):
