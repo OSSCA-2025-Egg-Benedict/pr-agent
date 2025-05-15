@@ -109,6 +109,10 @@ Everything below this marker is treated as previously auto-generated content and
         <td><b>enable_help_text</b></td>
         <td>If set to true, the tool will display a help text in the comment. Default is false.</td>
       </tr>
+      <tr>
+        <td><b>add_diagram</b></td>
+        <td>If set to true, the tool appends a Mermaid sequence diagram illustrating function or module interactions. Default is false.</td>
+      </tr>
     </table>
 
 ## Inline file summary 💎

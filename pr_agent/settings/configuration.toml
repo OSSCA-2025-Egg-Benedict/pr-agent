@@ -6,8 +6,8 @@
 
 [config]
 # models
-model="o4-mini"
-fallback_models=["gpt-4.1"]
+model="gemini/gemini-1.5-flash"
+fallback_models=["gemini/gemini-1.5-flash"]
 #model_reasoning="o4-mini" # dedictated reasoning model for self-reflection
 #model_weak="gpt-4o" # optional, a weaker model to use for some easier tasks
 # CLI
@@ -26,7 +26,7 @@ disable_auto_feedback = false
 ai_timeout=120 # 2minutes
 skip_keys = []
 custom_reasoning_model = false # when true, disables system messages and temperature controls for models that don't support chat-style inputs
-response_language="en-US" # Language locales code for PR responses in ISO 3166 and ISO 639 format (e.g., "en-US", "it-IT", "zh-CN", ...)
+response_language="ko-KR" # Language locales code for PR responses in ISO 3166 and ISO 639 format (e.g., "en-US", "it-IT", "zh-CN", ...)
 # token limits
 max_description_tokens = 500
 max_commits_tokens = 500
@@ -92,7 +92,7 @@ enable_intro_text=true
 enable_help_text=false # Determines whether to include help text in the PR review. Enabled by default.
 
 [pr_description] # /describe #
-publish_labels=false
+publish_labels=true
 add_original_user_description=true
 generate_ai_title=false
 use_bullet_points=true
@@ -109,6 +109,7 @@ enable_semantic_files_types=true
 collapsible_file_list='adaptive' # true, false, 'adaptive'
 collapsible_file_list_threshold=6
 inline_file_summary=false # false, true, 'table'
+add_diagram=true
 # markers
 use_description_markers=false
 include_generated_by_header=true
