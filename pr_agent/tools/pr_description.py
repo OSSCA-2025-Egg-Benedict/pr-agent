@@ -73,6 +73,7 @@ class PRDescription:
             "related_tickets": "",
             "include_file_summary_changes": len(self.git_provider.get_diff_files()) <= self.COLLAPSIBLE_FILE_LIST_THRESHOLD,
             'duplicate_prompt_examples': get_settings().config.get('duplicate_prompt_examples', False),
+            "add_diagram": True if getattr(get_settings().pr_description, "add_diagram", True) else False,
         }
 
         self.user_description = self.git_provider.get_user_description()
@@ -518,6 +519,12 @@ class PRDescription:
             summary = f"{ai_header}{ai_summary}"
             body = body.replace('pr_agent:summary', summary)
 
+        # Handle sequence diagram if present
+        ai_sequence_diagram = self.data.get('sequence_diagram')
+        if ai_sequence_diagram and not re.search(r'<!--\s*pr_agent:sequence_diagram\s*-->', body):
+            diagram = f"{ai_header}```mermaid\n{ai_sequence_diagram}\n```"
+            body = body.replace('pr_agent:sequence_diagram', diagram)
+        
         ai_walkthrough = self.data.get('pr_files')
         walkthrough_gfm = ""
         pr_file_changes = []
@@ -592,6 +599,9 @@ class PRDescription:
                     value = ', '.join(v.rstrip() for v in value)
                 value = value.replace('\n-', '\n\n-').strip() # makes the bullet points more readable by adding double space
                 pr_body += f"{value}\n"
+            elif key.lower().strip() == 'sequence_diagram':
+                # Add the Mermaid sequence diagram to the PR body
+                pr_body += f"```mermaid\n{value}\n```\n"
             else:
                 # if the value is a list, join its items by comma
                 if isinstance(value, list):
