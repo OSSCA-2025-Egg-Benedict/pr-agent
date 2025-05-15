@@ -15,10 +15,6 @@ Extra instructions from the user:
 =====
 {% endif %}
 
-{%- if add_diagram %}
-Generate a Mermaid sequence diagram of key function or component calls added or changed in this PR. Append it to the bottom of the `description` section using the ```mermaid format.
-{%- endif %}
-
 The output must be a YAML object equivalent to type $PRDescription, according to the following Pydantic definitions:
 =====
 class PRType(str, Enum):
@@ -48,12 +44,14 @@ class FileDescription(BaseModel):
 class PRDescription(BaseModel):
     type: List[PRType] = Field(description="one or more types that describe the PR content. Return the label member value (e.g. 'Bug fix', not 'bug_fix')")
     description: str = Field(description="summarize the PR changes in up to four bullet points, each up to 8 words. For large PRs, add sub-bullets if needed. Order bullets by importance, with each bullet highlighting a key change group.")
+{%- if add_diagram %}
+    diagram: str = Field(description="Generate a Mermaid sequence diagram of key function or component calls added or changed in this PR. Include it in the `description` section using ```mermaid format.")
+{%- else %}
     title: str = Field(description="a concise and descriptive title that captures the PR's main theme")
 {%- if enable_semantic_files_types %}
     pr_files: List[FileDescription] = Field(max_items=20, description="a list of all the files that were changed in the PR, and summary of their changes. Each file must be analyzed regardless of change size.")
 {%- endif %}
 =====
-
 
 Example output:
 
@@ -144,6 +142,13 @@ type:
 - ...
 description: |
   ...
+  {%- if add_diagram %}
+
+  ```mermaid
+  sequenceDiagram
+      participant A
+      A->>B: Call something
+  {%- endif %}
 title: |
   ...
 {%- if enable_semantic_files_types %}
