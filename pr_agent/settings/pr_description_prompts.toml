@@ -7,6 +7,15 @@ Your task is to provide a full description for the PR content - type, descriptio
 - If needed, each YAML output should be in block scalar indicator ('|')
 - When quoting variables, names or file paths from the code, use backticks (`) instead of single quote (').
 
+{%- if add_diagram %}
+- If the `add_diagram` field is present, include a sequence diagram in Mermaid syntax under that field.
+  Use this format (within triple backticks):
+  ```mermaid
+  sequenceDiagram
+      participant A
+      A->>B: Call something
+{%- endif %}
+
 {%- if extra_instructions %}
 
 Extra instructions from the user:
