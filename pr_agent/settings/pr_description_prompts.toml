@@ -7,15 +7,6 @@ Your task is to provide a full description for the PR content - type, descriptio
 - If needed, each YAML output should be in block scalar indicator ('|')
 - When quoting variables, names or file paths from the code, use backticks (`) instead of single quote (').
 
-{%- if add_diagram %}
-- If the `add_diagram` field is present, include a sequence diagram in Mermaid syntax under that field.
-  Use this format (within triple backticks):
-  ```mermaid
-  sequenceDiagram
-      participant A
-      A->>B: Call something
-{%- endif %}
-
 {%- if extra_instructions %}
 
 Extra instructions from the user:
@@ -24,6 +15,9 @@ Extra instructions from the user:
 =====
 {% endif %}
 
+{%- if add_diagram %}
+Generate a Mermaid sequence diagram of key function or component calls added or changed in this PR. Append it to the bottom of the `description` section using the ```mermaid format.
+{%- endif %}
 
 The output must be a YAML object equivalent to type $PRDescription, according to the following Pydantic definitions:
 =====
@@ -53,10 +47,7 @@ class FileDescription(BaseModel):
 
 class PRDescription(BaseModel):
     type: List[PRType] = Field(description="one or more types that describe the PR content. Return the label member value (e.g. 'Bug fix', not 'bug_fix')")
-    description: str = Field(description="summarize the PR changes in up to four bullet points, each up to 8 words. For large PRs, add sub-bullets if needed. Order bullets by importance, with each bullet highlighting a key change group. If `add_diagram` is enabled, append a Mermaid sequence diagram representing function or module interactions.")
-{%- if add_diagram %}
-    add_diagram: str = Field(description="Show function or module interactions as a sequence diagram using Mermaid syntax.")
-{%- endif %}
+    description: str = Field(description="summarize the PR changes in up to four bullet points, each up to 8 words. For large PRs, add sub-bullets if needed. Order bullets by importance, with each bullet highlighting a key change group.")
     title: str = Field(description="a concise and descriptive title that captures the PR's main theme")
 {%- if enable_semantic_files_types %}
     pr_files: List[FileDescription] = Field(max_items=20, description="a list of all the files that were changed in the PR, and summary of their changes. Each file must be analyzed regardless of change size.")
