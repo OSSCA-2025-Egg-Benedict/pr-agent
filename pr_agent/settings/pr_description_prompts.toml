@@ -6,6 +6,7 @@ Your task is to provide a full description for the PR content - type, descriptio
 - The generated title and description should prioritize the most significant changes.
 - If needed, each YAML output should be in block scalar indicator ('|')
 - When quoting variables, names or file paths from the code, use backticks (`) instead of single quote (').
+- Generate a Mermaid sequence diagram that shows the key function or component calls that were added or changed in this PR.
 
 {%- if extra_instructions %}
 
@@ -45,6 +46,7 @@ class FileDescription(BaseModel):
 class PRDescription(BaseModel):
     type: List[PRType] = Field(description="one or more types that describe the PR content. Return the label member value (e.g. 'Bug fix', not 'bug_fix')")
     description: str = Field(description="summarize the PR changes in up to four bullet points, each up to 8 words. For large PRs, add sub-bullets if needed. Order bullets by importance, with each bullet highlighting a key change group.")
+    sequence_diagram: str = Field(description="a Mermaid sequence diagram that visualizes key function or component calls that were added or changed in this PR. Use proper Mermaid syntax with 'sequenceDiagram' at the beginning.")
     title: str = Field(description="a concise and descriptive title that captures the PR's main theme")
 {%- if enable_semantic_files_types %}
     pr_files: List[FileDescription] = Field(max_items=20, description="a list of all the files that were changed in the PR, and summary of their changes. Each file must be analyzed regardless of change size.")
@@ -60,6 +62,12 @@ type:
 - ...
 description: |
   ...
+sequence_diagram: |
+  sequenceDiagram
+    participant A as ComponentA
+    participant B as ComponentB
+    A->>B: functionCall()
+    B-->>A: response
 title: |
   ...
 {%- if enable_semantic_files_types %}
@@ -141,6 +149,12 @@ type:
 - ...
 description: |
   ...
+sequence_diagram: |
+  sequenceDiagram
+    participant A as ComponentA
+    participant B as ComponentB
+    A->>B: functionCall()
+    B-->>A: response
 title: |
   ...
 {%- if enable_semantic_files_types %}
