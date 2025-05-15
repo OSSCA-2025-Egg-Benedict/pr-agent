@@ -45,6 +45,9 @@ class FileDescription(BaseModel):
 class PRDescription(BaseModel):
     type: List[PRType] = Field(description="one or more types that describe the PR content. Return the label member value (e.g. 'Bug fix', not 'bug_fix')")
     description: str = Field(description="summarize the PR changes in up to four bullet points, each up to 8 words. For large PRs, add sub-bullets if needed. Order bullets by importance, with each bullet highlighting a key change group.")
+{%- if add_diagram %}
+    Show function or module interactions as a sequence diagram using Mermaid.
+{%- endif %}
     title: str = Field(description="a concise and descriptive title that captures the PR's main theme")
 {%- if enable_semantic_files_types %}
     pr_files: List[FileDescription] = Field(max_items=20, description="a list of all the files that were changed in the PR, and summary of their changes. Each file must be analyzed regardless of change size.")
