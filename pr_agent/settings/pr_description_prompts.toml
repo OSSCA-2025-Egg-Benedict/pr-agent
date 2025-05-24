@@ -60,6 +60,14 @@ type:
 - ...
 description: |
   ...
+{%- if add_diagram %}
+diagram: |
+  sequenceDiagram
+  participant A as ComponentA
+  participant B as ComponentB
+  A->>B: functionCall()
+  B-->>A: response
+{%- endif %}
 title: |
   ...
 {%- if enable_semantic_files_types %}
@@ -141,6 +149,14 @@ type:
 - ...
 description: |
   ...
+{%- if add_diagram %}
+diagram: |
+  sequenceDiagram
+  participant A as ComponentA
+  participant B as ComponentB
+  A->>B: functionCall()
+  B-->>A: response
+{%- endif %}
 title: |
   ...
 {%- if enable_semantic_files_types %}
